@@ -1,0 +1,51 @@
+﻿
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Fun Translation</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Please type anything!</label>
+                        <input id="textString" class="form-control" placeholder="Enter string">
+                    </div>
+                    <div class="form-group">
+                        <label id="resultString"></label>
+                    </div>
+                </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                    </div>
+            </div>
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        $("#submit").click(function () {
+
+            var data = $('#textString').val();
+
+            console.log(data);
+
+            $.post("/FunTranslation/ConvertString",
+                { text: data },
+                function (response) {
+                    alert('ConvertedString: ' + response);
+                    $('#resultString').text(data);
+                }
+            );
+        });
+    });
+</script>
